@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             x:Class="ListView.MainPage"
+         xmlns:local="clr-namespace:ListView">
+    
+    <ContentPage.BindingContext>
+        <local:BookInfoRepository x:Name="viewModal" />
+    </ContentPage.BindingContext>
+
+    <!--<ContentPage.Behaviors>
+        <local:Behaviour/>
+    </ContentPage.Behaviors>-->
+
+
+    <Grid RowDefinitions="50,*">
+        <Button x:Name="addButton" Text="Add items" Command="{Binding AddItemsCommand}" Grid.Row="0" HeightRequest="50"/>
+        <ScrollView    Grid.Row="1">
+            <StackLayout x:Name="lstVoiceList"
+
+                     
+
+                        BindableLayout.ItemsSource="{Binding BookInfo,Mode=TwoWay}"
+
+                        Background="White"
+
+                        Margin="0,0,0,0">
+
+                <BindableLayout.ItemTemplate>
+
+                    <DataTemplate>
+                        <Grid 
+                       HorizontalOptions="FillAndExpand"
+
+                       VerticalOptions="FillAndExpand"
+
+                       Margin="5,0,5,0"
+
+                     >
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*" />
+
+                                <ColumnDefinition Width="*" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="1"
+
+                            Source="apple.png"
+
+                            Aspect="AspectFit"
+                              
+                             Margin="2"
+                                   
+                            BackgroundColor="AntiqueWhite"
+
+                            HeightRequest="25"
+
+                            VerticalOptions="Center"
+
+                            HorizontalOptions="End">
+
+                                <Image.GestureRecognizers>
+
+                                    <TapGestureRecognizer
+
+                            Tapped="DeleteVoiceRecord_Tapped"
+
+                                                   NumberOfTapsRequired="1" />
+
+                                </Image.GestureRecognizers>
+
+                            </Image>
+
+                            <Label Grid.Column="0"
+
+                            Grid.ColumnSpan="2"
+
+                            Text="{Binding BookName}"
+
+                            FontSize="{OnIdiom Desktop='18',Tablet='16',Phone='16'}"
+
+                            VerticalTextAlignment="Center"
+
+                            LineBreakMode="WordWrap"
+
+                            Margin="0,10,0,10" >
+                           
+
+                            </Label>
+
+                        </Grid>
+
+                    </DataTemplate>
+
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
